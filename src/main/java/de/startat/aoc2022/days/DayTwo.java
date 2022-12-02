@@ -12,7 +12,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.function.ToIntFunction;
-import lombok.Data;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -58,12 +57,11 @@ public class DayTwo {
             + sumOfPointsForStrategy);
   }
 
-  @Data
+  @Getter
   private static class Strategy {
 
     private Choice myChoice;
-    private Choice enemyChoice;
-
+    private final Choice enemyChoice;
     private Outcome outcome;
 
     Strategy(Choice enemyChoice, Choice myChoice) {
