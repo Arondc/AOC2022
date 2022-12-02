@@ -1,11 +1,11 @@
 package de.startat.aoc2022.days;
 
-import static de.startat.aoc2022.days.DayTwo.OUTCOME.DRAW;
-import static de.startat.aoc2022.days.DayTwo.OUTCOME.LOST;
-import static de.startat.aoc2022.days.DayTwo.OUTCOME.WIN;
-import static de.startat.aoc2022.days.DayTwo.RPS.PAPER;
-import static de.startat.aoc2022.days.DayTwo.RPS.ROCK;
-import static de.startat.aoc2022.days.DayTwo.RPS.SCISSORS;
+import static de.startat.aoc2022.days.DayTwo.Outcome.DRAW;
+import static de.startat.aoc2022.days.DayTwo.Outcome.LOST;
+import static de.startat.aoc2022.days.DayTwo.Outcome.WIN;
+import static de.startat.aoc2022.days.DayTwo.Choice.PAPER;
+import static de.startat.aoc2022.days.DayTwo.Choice.ROCK;
+import static de.startat.aoc2022.days.DayTwo.Choice.SCISSORS;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -40,7 +40,7 @@ public class DayTwo {
   private void firstStar(List<String> lines) {
     List<Strategy> strategies = lines.stream().map(l -> {
       String[] choiceStrings = l.split(" ");
-      return new Strategy(RPS.convertTo(choiceStrings[0]), RPS.convertTo(choiceStrings[1]));
+      return new Strategy(Choice.convertTo(choiceStrings[0]), Choice.convertTo(choiceStrings[1]));
     }).toList();
     long sumOfPointsForStrategy = strategies.stream().mapToInt(CALCULATE_STRATEGY_POINTS).sum();
     log.info("If the second column means the hand I should use to counter, the sum of points is "
@@ -50,7 +50,7 @@ public class DayTwo {
   private void secondStar(List<String> lines) {
     List<Strategy> strategies = lines.stream().map(l -> {
       String[] choiceStrings = l.split(" ");
-      return new Strategy(RPS.convertTo(choiceStrings[0]), OUTCOME.convertTo(choiceStrings[1]));
+      return new Strategy(Choice.convertTo(choiceStrings[0]), Outcome.convertTo(choiceStrings[1]));
     }).toList();
     long sumOfPointsForStrategy = strategies.stream().mapToInt(CALCULATE_STRATEGY_POINTS).sum();
     log.info(
@@ -61,18 +61,18 @@ public class DayTwo {
   @Data
   private static class Strategy {
 
-    private RPS myChoice;
-    private RPS enemyChoice;
+    private Choice myChoice;
+    private Choice enemyChoice;
 
-    private OUTCOME outcome;
+    private Outcome outcome;
 
-    Strategy(RPS enemyChoice, RPS myChoice) {
+    Strategy(Choice enemyChoice, Choice myChoice) {
       this.enemyChoice = enemyChoice;
       this.myChoice = myChoice;
       determineOutcome();
     }
 
-    Strategy(RPS enemyChoice, OUTCOME outcome) {
+    Strategy(Choice enemyChoice, Outcome outcome) {
       this.enemyChoice = enemyChoice;
       this.outcome = outcome;
       determineMyChoice();
@@ -107,16 +107,16 @@ public class DayTwo {
   }
 
   @Getter
-  enum RPS {
+  enum Choice {
     ROCK(1), PAPER(2), SCISSORS(3);
 
     private final int points;
 
-    RPS(int points) {
+    Choice(int points) {
       this.points = points;
     }
 
-    public static RPS convertTo(String choiceString) {
+    public static Choice convertTo(String choiceString) {
       return switch (choiceString) {
         case "A", "X" -> ROCK;
         case "B", "Y" -> PAPER;
@@ -127,16 +127,16 @@ public class DayTwo {
   }
 
   @Getter
-  enum OUTCOME {
+  enum Outcome {
     LOST(0), DRAW(3), WIN(6);
 
     private final int points;
 
-    OUTCOME(int points) {
+    Outcome(int points) {
       this.points = points;
     }
 
-    public static OUTCOME convertTo(String choiceString) {
+    public static Outcome convertTo(String choiceString) {
       return switch (choiceString) {
         case "X" -> LOST;
         case "Y" -> DRAW;
