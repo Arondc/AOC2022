@@ -43,7 +43,8 @@ public class DayTwo {
       return new Strategy(RPS.convertTo(choiceStrings[0]), RPS.convertTo(choiceStrings[1]));
     }).toList();
     long sumOfPointsForStrategy = strategies.stream().mapToInt(CALCULATE_STRATEGY_POINTS).sum();
-    log.info("If the second column means the hand I should use to counter, the sum of points is " +sumOfPointsForStrategy);
+    log.info("If the second column means the hand I should use to counter, the sum of points is "
+        + sumOfPointsForStrategy);
   }
 
   private void secondStar(List<String> lines) {
@@ -52,7 +53,9 @@ public class DayTwo {
       return new Strategy(RPS.convertTo(choiceStrings[0]), OUTCOME.convertTo(choiceStrings[1]));
     }).toList();
     long sumOfPointsForStrategy = strategies.stream().mapToInt(CALCULATE_STRATEGY_POINTS).sum();
-    log.info("If the second column means the desired outcome a round should have, the sum of points is " + sumOfPointsForStrategy);
+    log.info(
+        "If the second column means the desired outcome a round should have, the sum of points is "
+            + sumOfPointsForStrategy);
   }
 
   @Data
@@ -91,11 +94,6 @@ public class DayTwo {
       };
     }
 
-    public String toString() {
-      return myChoice.name() + "(" + myChoice.getPoints() + ") vs " + enemyChoice.name() + " -> "
-          + outcome.name() + "(" + outcome.getPoints() + ")";
-    }
-
     private void determineOutcome() {
       if (myChoice == ROCK && enemyChoice == PAPER || myChoice == PAPER && enemyChoice == SCISSORS
           || myChoice == SCISSORS && enemyChoice == ROCK) {
@@ -119,18 +117,12 @@ public class DayTwo {
     }
 
     public static RPS convertTo(String choiceString) {
-      switch (choiceString) {
-        case "A":
-        case "X":
-          return ROCK;
-        case "B":
-        case "Y":
-          return PAPER;
-        case "C":
-        case "Z":
-          return SCISSORS;
-      }
-      throw new RuntimeException(choiceString + " is not a mappable choice");
+      return switch (choiceString) {
+        case "A", "X" -> ROCK;
+        case "B", "Y" -> PAPER;
+        case "C", "Z" -> SCISSORS;
+        default -> throw new RuntimeException(choiceString + " is not a mappable choice");
+      };
     }
   }
 
@@ -145,15 +137,12 @@ public class DayTwo {
     }
 
     public static OUTCOME convertTo(String choiceString) {
-      switch (choiceString) {
-        case "X":
-          return LOST;
-        case "Y":
-          return DRAW;
-        case "Z":
-          return WIN;
-      }
-      throw new RuntimeException(choiceString + " is not a mappable outcome");
+      return switch (choiceString) {
+        case "X" -> LOST;
+        case "Y" -> DRAW;
+        case "Z" -> WIN;
+        default -> throw new RuntimeException(choiceString + " is not a mappable outcome");
+      };
     }
   }
 }
