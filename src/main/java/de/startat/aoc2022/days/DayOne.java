@@ -26,6 +26,23 @@ public class DayOne {
     }
   }
 
+  private void dayOneFirstStar(List<String> lines) {
+    Integer maxElfCalories = null;
+
+    int currentElfCalories = 0;
+    for (String line : lines) {
+      if (!line.isBlank()) {
+        currentElfCalories += Integer.parseInt(line);
+      } else {
+        if (maxElfCalories == null || currentElfCalories > maxElfCalories) {
+          maxElfCalories = currentElfCalories;
+        }
+        currentElfCalories = 0;
+      }
+    }
+    log.info("The elf with the most calories carries %d".formatted(maxElfCalories));
+  }
+
   private void dayOneSecondStar(List<String> lines) {
     List<Integer> elfCalories = new ArrayList<>();
 
@@ -42,22 +59,5 @@ public class DayOne {
     elfCalories.sort(Comparator.reverseOrder());
     log.info("The sum of the top three calories carried by elves is: %d".formatted(
         elfCalories.get(0) + elfCalories.get(1) + elfCalories.get(2)));
-  }
-
-  private void dayOneFirstStar(List<String> lines) {
-    Integer maxElfCalories = null;
-
-    int currentElfCalories = 0;
-    for (String line : lines) {
-      if (!line.isBlank()) {
-        currentElfCalories += Integer.parseInt(line);
-      } else {
-        if (maxElfCalories == null || currentElfCalories > maxElfCalories) {
-          maxElfCalories = currentElfCalories;
-        }
-        currentElfCalories = 0;
-      }
-    }
-    log.info("The elf with the most calories carries %d".formatted(maxElfCalories));
   }
 }
