@@ -49,7 +49,6 @@ public class DayFour {
         .filter(e -> e).count();
   }
 
-  @Data
   private static class Elf{
     public Elf(String rangeString){
       String[] rangeLimits = rangeString.split("-");
