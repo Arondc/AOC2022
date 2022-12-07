@@ -75,7 +75,6 @@ public class DaySeven {
     Set<Directory> foundDirectories = new HashSet<>();
     while (!directoriesToProcess.isEmpty()) {
       Directory d = directoriesToProcess.poll();
-
       if (p.test(d)) {
         foundDirectories.add(d);
       }
