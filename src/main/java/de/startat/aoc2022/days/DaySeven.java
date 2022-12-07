@@ -63,8 +63,8 @@ public class DaySeven {
 
     Predicate<Directory> p = d -> d.getSize() > additionalSpaceNeeded;
     Set<Directory> foundDirectories = findDirectoriesWith(traverser.getRoot(), p);
-    long directorySizeToDelete = foundDirectories.stream()
-        .mapToLong(Directory::getSize).min().orElseThrow();
+    long directorySizeToDelete = foundDirectories.stream().mapToLong(Directory::getSize).min()
+        .orElseThrow();
     log.info("Directory can be deleted for size: " + directorySizeToDelete);
 
   }
