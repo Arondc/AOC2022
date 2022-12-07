@@ -24,7 +24,8 @@ public class DaySeven {
   public static final int FILE_SYSTEM_MAX_SIZE = 70000000;
   public static final int UPDATE_NEEDS_SIZE = 30000000;
 
-  public static final Predicate<Directory> SIZE_SMALLER_THAN_HUNDRED_K = dir -> dir.getSize() < MAX_SIZE_FIRST_STAR;
+  public static final Predicate<Directory> SIZE_SMALLER_THAN_HUNDRED_K = dir -> dir.getSize()
+      < MAX_SIZE_FIRST_STAR;
 
   public void run() {
     try {
@@ -56,7 +57,7 @@ public class DaySeven {
     traverser.buildTree(lines);
 
     final long currentFreeSpace = FILE_SYSTEM_MAX_SIZE - traverser.getRoot().getSize();
-    final long additionalSpaceNeeded = UPDATE_NEEDS_SIZE - currentFreeSpace ;
+    final long additionalSpaceNeeded = UPDATE_NEEDS_SIZE - currentFreeSpace;
     log.info("Current Memory usage: " + currentFreeSpace);
     log.info("Additional Memory needed: " + additionalSpaceNeeded);
 
@@ -75,7 +76,6 @@ public class DaySeven {
     while (!directoriesToProcess.isEmpty()) {
       Directory d = directoriesToProcess.poll();
 
-
       if (p.test(d)) {
         foundDirectories.add(d);
       }
@@ -83,7 +83,6 @@ public class DaySeven {
     }
     return foundDirectories;
   }
-
 
 
   private static class Traverser {
