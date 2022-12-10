@@ -48,10 +48,9 @@ public class Aoc2022Application implements CommandLineRunner {
     daySeven.run();
     dayEight.run();
     dayNine.run();
-     */
-
     dayNine.run();
-    //dayTen.run();
+    */
+    dayTen.run();
 
   }
 }
