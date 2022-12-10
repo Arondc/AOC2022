@@ -103,21 +103,8 @@ public class DayNine {
       }
 
       if (x != head.x && y != head.y) {
-        if (x < head.x && y < head.y) {
-          x += 1;
-          y += 1;
-        } else if (x < head.x) {
-          x += 1;
-          y -= 1;
-        } else if (y > head.y) {
-          x -= 1;
-          y -= 1;
-        } else {
-          x -= 1;
-          y += 1;
-        }
-
-
+        x += (head.x - x) / Math.abs((head.x - x));
+        y += (head.y - y) / Math.abs((head.y - y));
       } else if (x == head.x && y != head.y) {
         y += (head.y - y) / 2;
       } else if (x != head.x) {
