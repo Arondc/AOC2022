@@ -1,6 +1,7 @@
 package de.startat.aoc2022;
 
 import de.startat.aoc2022.days.DayEight;
+import de.startat.aoc2022.days.DayEleven;
 import de.startat.aoc2022.days.DayFive;
 import de.startat.aoc2022.days.DayFour;
 import de.startat.aoc2022.days.DayNine;
@@ -31,6 +32,7 @@ public class Aoc2022Application implements CommandLineRunner {
   private final DayEight dayEight;
   private final DayNine dayNine;
   private final DayTen dayTen;
+  private final DayEleven dayEleven;
 
   public static void main(String[] args) {
     SpringApplication.run(Aoc2022Application.class, args);
@@ -49,8 +51,9 @@ public class Aoc2022Application implements CommandLineRunner {
     dayEight.run();
     dayNine.run();
     dayNine.run();
-    */
     dayTen.run();
+     */
+    dayEleven.run();
 
   }
 }
