@@ -24,10 +24,13 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class DayEleven {
 
+  private static List<Long> divisors = new ArrayList<>();
+  private static Long kgvOfDivisors;
+
   public void run() {
     try {
       log.info("=== Day 11 ===");
-      List<String> lines = Files.readAllLines(Path.of("src/main/resources/input_day11_test.txt"));
+      List<String> lines = Files.readAllLines(Path.of("src/main/resources/input_day11.txt"));
       log.info("=== Day 11 - First star ===");
       dayOneFirstStar(lines);
       log.info("=== Day 11 - Second star ===");
@@ -42,6 +45,7 @@ public class DayEleven {
   }
 
   private void dayOneSecondStar(List<String> lines) {
+    divisors = new ArrayList<>();
     calculateMonkeyBusiness(lines, 10000, false);
   }
 
@@ -51,6 +55,8 @@ public class DayEleven {
 
     Map<Long, Monkey> monkeys = buildMonkeyMap(lines,
         currentMonkeyLines, mp);
+
+    kgvOfDivisors = divisors.stream().mapToLong(l->l).reduce(1L, (l1,l2) -> l1*l2);
 
     log.info(monkeys.toString());
 
@@ -107,9 +113,11 @@ public class DayEleven {
         //log.info("\t\tWorry level changes to " + item.getWorryLevel());
         if(firstStar){
           item.divideWorryLevelByThree();
+          //log.info("\t\tMonkey gets bored with item. Worry level is divided by 3 to " + item.getWorryLevel());
         }
-        //log.info("\t\tMonkey gets bored with item. Worry level is divided by 3 to " + item.getWorryLevel());
+
         Monkey targetMonkey = monkeys.get(currentMonkey.test.apply(item));
+        item.setWorryLevel(item.getWorryLevel() % kgvOfDivisors);
         //log.info("\t\tItem is thrown to monkey " + targetMonkey.number);
         targetMonkey.items.offer(item);
       }
@@ -170,6 +178,7 @@ public class DayEleven {
       Long finalTestDivisibleBy = testDivisibleBy;
       Long finalTestTargetTrue = testTargetTrue;
       Long finalTestTargetFalse = testTargetFalse;
+      divisors.add(finalTestDivisibleBy);
       test = i -> i.getWorryLevel() % finalTestDivisibleBy == 0 ? finalTestTargetTrue : finalTestTargetFalse;
       return new Monkey(number, items==null?new LinkedList<>():items, operation, test, 0L);
     }
