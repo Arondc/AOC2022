@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class DayTwelve {
+public class DayTwelve implements RunnableDay{
 
   private static final Map<String, Integer> heightMap = new HashMap<>();
 
