@@ -51,7 +51,7 @@ public class DayFourteen implements RunnableDay {
     deepestRock = rocks.stream().mapToInt(r -> r.depth).max().orElseThrow();
     int lineLevel = deepestRock+2;
     deepestRock = lineLevel;
-    rocks.addAll(buildCoordline(new Coordinates(-2000, lineLevel), new Coordinates(2000, lineLevel)));
+    rocks.addAll(buildCoordline(new Coordinates(0, lineLevel), new Coordinates(1000, lineLevel)));
 
     Coordinates sandStart = new Coordinates(500, 0);
     do {
