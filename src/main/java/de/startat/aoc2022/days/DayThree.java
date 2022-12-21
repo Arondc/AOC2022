@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class DayThree {
+public class DayThree implements RunnableDay{
   public static final Function<String, List<String>> SPLIT_IN_THE_MIDDLE = s -> List.of(
       s.substring(0, s.length() / 2), s.substring(s.length() / 2));
   public static final Function<List<String>, List<Set<String>>> TO_SETS_OF_SINGLE_ITEMS = sl -> sl.stream()

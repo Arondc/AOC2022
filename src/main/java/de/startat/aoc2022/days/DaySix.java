@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class DaySix {
+public class DaySix implements RunnableDay{
 
   public static final Function<String, List<String>> TO_LIST_OF_CHARS = l -> List.of(
       l.split(""));

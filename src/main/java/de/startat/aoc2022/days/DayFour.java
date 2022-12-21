@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class DayFour {
+public class DayFour implements RunnableDay{
 
   public static final Function<String, List<Elf>> TO_ELVE_PAIRS = s -> Arrays.stream(s.split(","))
       .map(Elf::new).collect(

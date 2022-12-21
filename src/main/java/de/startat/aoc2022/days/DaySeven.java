@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class DaySeven {
+public class DaySeven implements RunnableDay{
 
   public static final int MAX_SIZE_FIRST_STAR = 100_000;
   public static final int FILE_SYSTEM_MAX_SIZE = 70000000;
@@ -133,7 +133,7 @@ public class DaySeven {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    Directory parentDirectory = null;
+    Directory parentDirectory;
     @ToString.Exclude
     Set<Directory> subDirectories = new HashSet<>();
     Set<File> files = new HashSet<>();

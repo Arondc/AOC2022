@@ -99,6 +99,7 @@ public class DaySeventeen implements RunnableDay {
   }
 
   private void dayOneSecondStar(List<String> lines) {
+    lines.forEach(log::info);
     // Did not do this
   }
 
@@ -203,9 +204,10 @@ public class DaySeventeen implements RunnableDay {
     @Builder.Default
     String representation  = "#";
 
-    Coordinate(long x, long y) {
+    Coordinate(long x, long y, String representation) {
       this.x = x;
       this.y = y;
+      this.representation = representation;
     }
 
     public void moveDown(){

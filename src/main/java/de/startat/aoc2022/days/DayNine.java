@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class DayNine {
+public class DayNine implements RunnableDay{
 
   public void run() {
     try {

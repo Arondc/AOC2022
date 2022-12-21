@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class DayTwo {
+public class DayTwo implements RunnableDay {
 
   public static final ToIntFunction<Strategy> CALCULATE_STRATEGY_POINTS = s ->
       s.getMyChoice().getPoints() + s.getOutcome().getPoints();

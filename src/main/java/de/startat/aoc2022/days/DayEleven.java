@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class DayEleven {
+public class DayEleven implements RunnableDay {
 
   private static List<Long> divisors = new ArrayList<>();
   private static Long kgvOfDivisors;
