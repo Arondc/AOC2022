@@ -18,6 +18,6 @@ public class Aoc2022Application implements CommandLineRunner {
   }
   @Override
   public void run(String... args) {
-    ((RunnableDay)applicationContext.getBean("dayFifteen")).run();
+    ((RunnableDay)applicationContext.getBean("daySeventeen")).run();
   }
 }
